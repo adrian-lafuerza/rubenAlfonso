@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+/* Roboto Font Family */
+@font-face {
+  font-family: 'Roboto';
+  src: url('/assets/font/roboto/roboto-v30-latin-300.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/assets/font/roboto/roboto-v30-latin-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/assets/font/roboto/roboto-v30-latin-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Sofia Pro Font Family */
+@font-face {
+  font-family: 'Sofia Pro';
+  src: url('/assets/font/sofia-pro/SofiaProRegular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* CSS Custom Properties for easy usage */
+:root {
+  --font-roboto: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-sofia-pro: 'Sofia Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Utility classes */
+.font-roboto {
+  font-family: var(--font-roboto);
+}
+
+.font-sofia-pro {
+  font-family: var(--font-sofia-pro);
+}
+
+/* Marquee Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  box-shadow: 0 50px 60px 0px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(0, 0, 0, 0.07);
+}
+
+.marquee__content {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-around;
+  min-width: 100%;
+  animation: scroll 10s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .marquee__content {
+    animation: scroll 15s linear infinite;
+  }
+}
+
+/* Roboto Font Configuration (Principal) */
+@layer base {
+  html {
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+  
+  body {
+    overflow-x: hidden;
+  }
+}
