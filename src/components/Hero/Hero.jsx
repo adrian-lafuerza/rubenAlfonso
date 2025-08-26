@@ -29,7 +29,6 @@ const Hero = () => {
 
     const handlePlayVideo = () => {
         setIsVideoPlaying(true);
-        // Aquí se puede agregar la lógica para reproducir el video
     };
 
     return (
@@ -109,6 +108,7 @@ const Hero = () => {
                                     boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
                                 }}
                                 whileTap={{ scale: 0.95 }}
+                                onClick={() => window.location.href = `https://www.compracondomiami.com/`}
                             >
                                 Quiero comprar en Miami
                             </motion.button>
@@ -122,6 +122,7 @@ const Hero = () => {
                                     boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
                                 }}
                                 whileTap={{ scale: 0.95 }}
+                                onClick={() => window.location.href = `${import.meta.env.VITE_APP_BASE_URL}`}
                             >
                                 Quiero comprar en España
                             </motion.button>
@@ -213,57 +214,74 @@ const Hero = () => {
                                 >
                                     {/* Imagen container con altura completa */}
                                     <motion.div 
-                                        className="flex-1 relative bg-gray-800 overflow-hidden"
+                                        className="flex-1 relative bg-gray-800 overflow-hidden rounded-t-lg"
                                         whileHover={{ scale: 1.02 }}
                                         transition={{ duration: 0.3 }}
                                     >
-                                        <motion.img
-                                            src={RubenPhoto}
-                                            alt="Ruben Alvarez"
-                                            className="w-full h-full object-cover"
-                                            initial={{ scale: 1.1, opacity: 0 }}
-                                            animate={{ scale: 1, opacity: 1 }}
-                                            transition={{ duration: 0.8, ease: "easeOut" }}
-                                        />
+                                        {!isVideoPlaying ? (
+                                            <motion.img
+                                                src={RubenPhoto}
+                                                alt="Ruben Alvarez"
+                                                className="w-full h-full object-cover"
+                                                initial={{ scale: 1.1, opacity: 0 }}
+                                                animate={{ scale: 1, opacity: 1 }}
+                                                transition={{ duration: 0.8, ease: "easeOut" }}
+                                            />
+                                        ) : (
+                                            <div className="relative w-full h-full">
+                                                <video
+                                                    className="w-full h-full object-cover"
+                                                    controls
+                                                    autoPlay
+                                                    onEnded={() => setIsVideoPlaying(false)}
+                                                    style={{ maxHeight: '100%', maxWidth: '100%' }}
+                                                >
+                                                    <source src="/assets/videos/principal.mp4" type="video/mp4" />
+                                                    Tu navegador no soporta el elemento de video.
+                                                </video>
+                                            </div>
+                                        )}
                                     </motion.div>
 
                                     {/* Botón de YouTube posicionado mitad dentro y mitad fuera */}
-                                    <motion.div 
-                                        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2"
-                                        initial={{ scale: 0, rotate: -180 }}
-                                        animate={{ scale: 1, rotate: 0 }}
-                                        transition={{ 
-                                            delay: 0.5, 
-                                            duration: 0.6, 
-                                            ease: "backOut" 
-                                        }}
-                                    >
+                                    {!isVideoPlaying && (
                                         <motion.div 
-                                            className="cursor-pointer"
-                                            onClick={handlePlayVideo}
-                                            whileHover={{ 
-                                                scale: 1.1,
-                                                rotate: 5
-                                            }}
-                                            whileTap={{ scale: 0.9 }}
-                                            animate={{
-                                                y: [0, -5, 0],
-                                            }}
-                                            transition={{
-                                                y: {
-                                                    duration: 2,
-                                                    repeat: Infinity,
-                                                    ease: "easeInOut"
-                                                }
+                                            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2"
+                                            initial={{ scale: 0, rotate: -180 }}
+                                            animate={{ scale: 1, rotate: 0 }}
+                                            transition={{ 
+                                                delay: 0.5, 
+                                                duration: 0.6, 
+                                                ease: "backOut" 
                                             }}
                                         >
-                                            <img
-                                                src={YoutubeButton}
-                                                alt="Play video"
-                                                className="w-28 h-28"
-                                            />
+                                            <motion.div 
+                                                className="cursor-pointer"
+                                                onClick={handlePlayVideo}
+                                                whileHover={{ 
+                                                    scale: 1.1,
+                                                    rotate: 5
+                                                }}
+                                                whileTap={{ scale: 0.9 }}
+                                                animate={{
+                                                    y: [0, -5, 0],
+                                                }}
+                                                transition={{
+                                                    y: {
+                                                        duration: 2,
+                                                        repeat: Infinity,
+                                                        ease: "easeInOut"
+                                                    }
+                                                }}
+                                            >
+                                                <img
+                                                    src={YoutubeButton}
+                                                    alt="Play video"
+                                                    className="w-28 h-28"
+                                                />
+                                            </motion.div>
                                         </motion.div>
-                                    </motion.div>
+                                    )}
                                 </motion.div>
                             </div>
                         </motion.div>

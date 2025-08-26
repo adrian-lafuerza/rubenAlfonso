@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStories } from '../../contexts/StoriesContext';
-import PlayIcon from '../../assets/images/Play.svg';
+import StoryCard from './StoryCard';
 import useScrollReveal from '../../hooks/useScrollReveal';
 import { 
   slideInVariants, 
@@ -16,238 +16,7 @@ import {
   textRevealVariants
 } from '../../utils/motionVariants';
 
-/**
- * Componente de card individual para cada story
- */
-const StoryCard = ({ story, onClick, visibleItems, index }) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [imageError, setImageError] = useState(false);
-  const { ref: cardRef, isInView: cardInView } = useScrollReveal({ threshold: 0.3 });
 
-  // Calcular ancho dinámico basado en items visibles
-  const getCardWidth = () => {
-    if (visibleItems === 1) {
-      return 'calc(100% - 16px)'; // En móvil, usar ancho completo menos padding
-    } else if (visibleItems === 2) {
-      return 'calc(50% - 12px)'; // En tablet, 50% menos la mitad del gap
-    } else {
-      return 'calc(33.333% - 16px)'; // En desktop, 33.33% menos gap
-    }
-  };
-
-  const handleImageLoad = () => {
-    setImageLoaded(true);
-  };
-
-  const handleImageError = () => {
-    setImageError(true);
-    setImageLoaded(true);
-  };
-
-  const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-      scale: 0.8,
-      rotateY: 15,
-      y: 50
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      rotateY: 0,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        delay: index * 0.1,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }
-    }
-  };
-
-  return (
-    <motion.div
-      ref={cardRef}
-      className="relative rounded-3xl overflow-hidden group flex-shrink-0 bg-gray-100"
-      style={{
-        background: 'linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%)',
-        border: '3px solid #000',
-        aspectRatio: '2.5/4',
-        height: visibleItems === 1 ? '420px' : visibleItems === 2 ? '450px' : '700px',
-        width: getCardWidth(),
-        minWidth: visibleItems === 1 ? '250px' : visibleItems === 2 ? '280px' : '300px',
-      }}
-      variants={cardVariants}
-      initial="hidden"
-      animate={cardInView ? "visible" : "hidden"}
-      whileHover={{
-        scale: 1.05,
-        rotateY: 5,
-        boxShadow: "0 25px 50px rgba(0,0,0,0.3)",
-        transition: { duration: 0.3 }
-      }}
-      whileTap={{
-        scale: 0.98,
-        transition: { duration: 0.1 }
-      }}
-    >
-      {/* Imagen de fondo */}
-      <div className="relative w-full h-full">
-        <AnimatePresence>
-          {!imageLoaded && (
-            <motion.div 
-              className="absolute inset-0 bg-gray-200 flex items-center justify-center"
-              initial={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.div 
-                className="w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {!imageError ? (
-          <motion.img
-            src={story.backgroundImage}
-            alt={story.name}
-            className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-110 ${imageLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
-            style={{
-              maxWidth: '100%',
-              maxHeight: '100%',
-              objectFit: 'cover'
-            }}
-            onLoad={handleImageLoad}
-            onError={handleImageError}
-            initial={{ scale: 1.1, opacity: 0 }}
-            animate={{ 
-              scale: 1, 
-              opacity: imageLoaded ? 1 : 0,
-              transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
-            }}
-          />
-        ) : (
-          <motion.div 
-            className="w-full h-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="text-gray-600 text-center">
-              <motion.svg 
-                className="w-12 h-12 mx-auto mb-2" 
-                fill="currentColor" 
-                viewBox="0 0 20 20"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.1 }}
-              >
-                <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-              </motion.svg>
-              <motion.p 
-                className="text-sm"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.2 }}
-              >
-                Imagen no disponible
-              </motion.p>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Información de la story en la parte inferior */}
-        <motion.div 
-          className={`absolute bottom-0 left-0 right-0 ${visibleItems === 1 ? 'p-4' : 'p-6'}`}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <div className="flex items-center justify-between">
-            <motion.div 
-              className="flex-1"
-              variants={{
-                hidden: { opacity: 0, x: -20 },
-                visible: {
-                  opacity: 1,
-                  x: 0,
-                  transition: {
-                    duration: 0.5,
-                    delay: 0.4
-                  }
-                }
-              }}
-              initial="hidden"
-              animate={cardInView ? "visible" : "hidden"}
-            >
-              <h3 className={`font-bold text-white mb-1 drop-shadow-lg ${visibleItems === 1 ? 'text-lg' : 'text-xl'
-                }`}>
-                {story.name}
-              </h3>
-              {story.positionJob && (
-                <p className="text-white text-sm opacity-90 drop-shadow-lg">
-                  {story.positionJob}
-                </p>
-              )}
-            </motion.div>
-            {/* Botón de play al lado del nombre */}
-            <motion.div 
-              className={`${visibleItems === 1 ? 'ml-2' : 'ml-4'}`}
-              variants={{
-                hidden: { opacity: 0, scale: 0, rotate: -180 },
-                visible: {
-                  opacity: 1,
-                  scale: 1,
-                  rotate: 0,
-                  transition: {
-                    duration: 0.5,
-                    delay: 0.5,
-                    ease: [0.25, 0.46, 0.45, 0.94]
-                  }
-                }
-              }}
-              initial="hidden"
-              animate={cardInView ? "visible" : "hidden"}
-              whileHover={{
-                scale: 1.1,
-                rotate: 12,
-                transition: { duration: 0.2 }
-              }}
-              whileTap={{
-                scale: 0.9,
-                transition: { duration: 0.1 }
-              }}
-            >
-              <motion.button
-                onClick={() => onClick(story)}
-                className={`backdrop-blur-sm rounded-2xl border-2 border-white shadow-lg hover:bg-[#0E0E0E] transition-colors duration-300 cursor-pointer ${visibleItems === 1 ? 'p-3' : 'p-4'
-                  }`}
-                whileHover={{
-                  backgroundColor: "#0E0E0E",
-                  boxShadow: "0 10px 25px rgba(255,255,255,0.2)"
-                }}
-              >
-                <motion.img
-                  src={PlayIcon}
-                  alt="Play"
-                  className={`filter brightness-0 invert transition-transform duration-300 ${visibleItems === 1 ? 'w-8 h-8' : 'w-10 h-10'
-                    }`}
-                  whileHover={{
-                    scale: 1.25,
-                    transition: { duration: 0.2 }
-                  }}
-                />
-              </motion.button>
-            </motion.div>
-          </div>
-        </motion.div>
-      </div>
-    </motion.div>
-  );
-};
 
 /**
  * Componente principal de Stories
@@ -258,6 +27,8 @@ const Stories = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [lastScrollTime, setLastScrollTime] = useState(0);
+  const [lastScrollLeft, setLastScrollLeft] = useState(0);
   const scrollContainerRef = useRef(null);
   
   const { ref: sectionRef, isInView: sectionInView } = useScrollReveal({ threshold: 0.1 });
@@ -275,10 +46,10 @@ const Stories = () => {
     const updateVisibleItems = () => {
       if (window.innerWidth < 768) {
         setVisibleItems(1); // Móvil: 1 card
-      } else if (window.innerWidth < 1024) {
-        setVisibleItems(2); // Tablet: 2 cards
+      } else if (window.innerWidth < 1280) {
+        setVisibleItems(2); // Tablet y Desktop (md, lg): 2 cards
       } else {
-        setVisibleItems(3); // Desktop: 3 cards
+        setVisibleItems(3); // Extra Large (xl): 3 cards
       }
     };
 
@@ -312,20 +83,64 @@ const Stories = () => {
     }
   };
 
-  // Funciones para drag simplificadas
+  // Función para snap automático a la tarjeta más cercana
+  const snapToNearestCard = (velocity = 0) => {
+    if (!scrollContainerRef.current) return;
+    
+    const container = scrollContainerRef.current;
+    const containerWidth = container.clientWidth;
+    const cardWidth = containerWidth / visibleItems;
+    const currentScroll = container.scrollLeft;
+    
+    // Calcular el índice base
+    let nearestIndex = Math.round(currentScroll / cardWidth);
+    
+    // Ajustar según la velocidad del drag para un comportamiento más natural
+    if (Math.abs(velocity) > 0.5) {
+      if (velocity > 0) {
+        nearestIndex = Math.ceil(currentScroll / cardWidth);
+      } else {
+        nearestIndex = Math.floor(currentScroll / cardWidth);
+      }
+    }
+    
+    // Asegurar que el índice esté dentro de los límites
+    nearestIndex = Math.max(0, Math.min(nearestIndex, stories.length - visibleItems));
+    const targetScroll = nearestIndex * cardWidth;
+    
+    // Solo hacer snap si hay una diferencia significativa
+    if (Math.abs(currentScroll - targetScroll) > 5) {
+      container.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
+      });
+    }
+    
+    // Actualizar el índice actual
+    setCurrentIndex(nearestIndex);
+  };
+
+  // Funciones para drag con snap mejorado
   const handleMouseDown = (e) => {
     if (!scrollContainerRef.current) return;
     e.preventDefault();
     setIsDragging(true);
     setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
     setScrollLeft(scrollContainerRef.current.scrollLeft);
+    setLastScrollTime(Date.now());
+    setLastScrollLeft(scrollContainerRef.current.scrollLeft);
   };
 
   const handleMouseLeave = () => {
     if (isDragging) {
       setIsDragging(false);
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
+      // Calcular velocidad para el snap
+      const currentTime = Date.now();
+      const currentScroll = scrollContainerRef.current?.scrollLeft || 0;
+      const timeDiff = currentTime - lastScrollTime;
+      const scrollDiff = currentScroll - lastScrollLeft;
+      const velocity = timeDiff > 0 ? scrollDiff / timeDiff : 0;
+      snapToNearestCard(velocity);
     }
   };
 
@@ -338,6 +153,8 @@ const Stories = () => {
       setIsDragging(true);
       setStartX(e.touches[0].pageX - container.offsetLeft);
       setScrollLeft(container.scrollLeft);
+      setLastScrollTime(Date.now());
+      setLastScrollLeft(container.scrollLeft);
     };
 
     const handleTouchMove = (e) => {
@@ -350,6 +167,15 @@ const Stories = () => {
 
     const handleTouchEnd = () => {
       setIsDragging(false);
+      // Pequeño delay para permitir que el scroll se estabilice antes del snap
+      setTimeout(() => {
+        const currentTime = Date.now();
+        const currentScroll = scrollContainerRef.current?.scrollLeft || 0;
+        const timeDiff = currentTime - lastScrollTime;
+        const scrollDiff = currentScroll - lastScrollLeft;
+        const velocity = timeDiff > 0 ? scrollDiff / timeDiff : 0;
+        snapToNearestCard(velocity);
+      }, 50);
     };
 
     container.addEventListener('touchstart', handleTouchStart, { passive: true });
@@ -375,6 +201,15 @@ const Stories = () => {
 
     const handleGlobalMouseUp = () => {
       setIsDragging(false);
+      // Snap automático al finalizar el drag
+      setTimeout(() => {
+        const currentTime = Date.now();
+        const currentScroll = scrollContainerRef.current?.scrollLeft || 0;
+        const timeDiff = currentTime - lastScrollTime;
+        const scrollDiff = currentScroll - lastScrollLeft;
+        const velocity = timeDiff > 0 ? scrollDiff / timeDiff : 0;
+        snapToNearestCard(velocity);
+      }, 50);
     };
 
     if (isDragging) {
@@ -567,7 +402,7 @@ const Stories = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
-      <div className="max-w-[80%] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[90%] xl:max-w-[80%] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Layout responsive: centrado en móvil/tablet, lado a lado en desktop */}
         <div className="lg:grid lg:grid-cols-12 lg:gap-12 lg:items-center">
           {/* Encabezado - Columna izquierda en desktop */}
@@ -646,7 +481,7 @@ const Stories = () => {
             {/* Stories carousel */}
             <motion.div
               ref={scrollContainerRef}
-              className={`flex overflow-x-auto scrollbar-hide pb-16 select-none py-8 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'
+              className={`flex overflow-x-auto scrollbar-hide pb-16 px-16 select-none py-8 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'
                 } ${visibleItems === 1 ? 'gap-4' : 'gap-6'
                 }`}
               style={{
@@ -664,6 +499,11 @@ const Stories = () => {
                   const cardWidth = containerWidth / visibleItems;
                   const index = Math.round(scrollLeft / cardWidth);
                   setCurrentIndex(Math.max(0, Math.min(index, stories.length - visibleItems)));
+                }
+                // Actualizar posición para cálculo de velocidad durante el drag
+                if (isDragging && scrollContainerRef.current) {
+                  setLastScrollTime(Date.now());
+                  setLastScrollLeft(scrollContainerRef.current.scrollLeft);
                 }
               }}
               variants={{
