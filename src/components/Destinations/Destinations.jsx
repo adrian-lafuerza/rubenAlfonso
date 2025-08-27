@@ -340,7 +340,7 @@ const Destinations = () => {
                   boxShadow: "0 10px 25px rgba(255,255,255,0.2)",
                   y: -2
                 }}
-                onClick={() => window.location.href = `${import.meta.env.VITE_APP_BASE_URL}`}
+                onClick={() => window.location.href = `https://comprando-con-esp-ohta.vercel.app/project`}
                 whileTap={{ scale: 0.95 }}
               >
                 Ver Proyectos
@@ -448,7 +448,7 @@ const Destinations = () => {
                   y: -2
                 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => window.location.href = `http://compracondomiami.com/`}
+                onClick={() => window.location.href = `https://www.compracondomiami.com/`}
               >
                 Ver Proyectos
               </motion.button>

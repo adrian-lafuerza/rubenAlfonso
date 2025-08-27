@@ -122,7 +122,7 @@ const Hero = () => {
                                     boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
                                 }}
                                 whileTap={{ scale: 0.95 }}
-                                onClick={() => window.location.href = `${import.meta.env.VITE_APP_BASE_URL}`}
+                                onClick={() => window.location.href = `https://comprando-con-esp-ohta.vercel.app/project`}
                             >
                                 Quiero comprar en España
                             </motion.button>

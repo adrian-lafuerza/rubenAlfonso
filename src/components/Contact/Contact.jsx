@@ -72,7 +72,7 @@ const Contact = () => {
         <button
           className="cursor-pointer font-semibold text-[#0E0E0E] border-2 border-[#0E0E0E] px-8 py-3 rounded-md font-medium hover:bg-[#0E0E0E] hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
           aria-label="Información sobre comprar en Miami"
-          onClick={() => window.location.href = `${import.meta.env.VITE_APP_BASE_URL}`}
+          onClick={() => window.location.href = `https://comprando-con-esp-ohta.vercel.app/project`}
         >
           Ver Proyectos
         </button>
