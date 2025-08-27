@@ -114,6 +114,7 @@ const StoryCard = ({ story, onClick, visibleItems, index }) => {
         <AnimatePresence>
           {!imageLoaded && (
             <motion.div
+              key="loading-spinner"
               className="absolute inset-0 bg-gray-200 flex items-center justify-center"
               initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -131,6 +132,7 @@ const StoryCard = ({ story, onClick, visibleItems, index }) => {
           <AnimatePresence>
             {showVideo && isYouTubeUrl(story.videoLink) && (
               <motion.div
+                key="youtube-video"
                 className="absolute inset-0 z-10 bg-black"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -247,6 +249,7 @@ const StoryCard = ({ story, onClick, visibleItems, index }) => {
             <AnimatePresence>
               {!videoPlaying && (
                 <motion.div
+                  key="play-button"
                   className={`${visibleItems === 1 ? 'ml-2' : 'ml-6'} flex items-end`}
                   variants={{
                     hidden: { opacity: 0, scale: 0, rotate: -180 },

@@ -262,33 +262,55 @@ const Footer = () => {
                         {/* Enlaces de Navegación - Alineados al final */}
                         <motion.nav
                             ref={navRef}
-                            className="flex flex-wrap gap-3 sm:gap-4 md:gap-6 text-xs sm:text-sm md:text-base"
+                            className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 md:gap-6"
                             aria-label="Enlaces de navegación del footer"
                             initial="visible"
                             animate="visible"
                             variants={containerVariants}
                         >
-                            {navigationLinks.map((link, index) => (
-                                <motion.a
-                                    key={link.href}
-                                    href={link.href}
-                                    className="text-black hover:text-black transition-colors duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 rounded-sm"
-                                    aria-label={link.ariaLabel}
-                                    variants={navLinkVariants}
-                                    custom={index}
-                                    whileHover={{
-                                        scale: 1.05,
-                                        y: -2,
-                                        transition: { duration: 0.2 }
-                                    }}
-                                    whileTap={{
-                                        scale: 0.95,
-                                        transition: { duration: 0.1 }
-                                    }}
-                                >
-                                    {link.label}
-                                </motion.a>
-                            ))}
+                            <motion.a
+                                href='https://www.wowwebgroup.com/'
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group mt-4 inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-gray-800 to-black text-white text-xs sm:text-sm font-medium rounded-lg hover:from-black hover:to-gray-800 transition-all duration-300 transform shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                                aria-label='Designed and Developed by Wowwebgroup'
+                                variants={navLinkVariants}
+                                style={{
+                                    transformStyle: "preserve-3d",
+                                    perspective: "1000px",
+                                    boxShadow: "20px 20px 40px rgba(0,0,0,0.3)",
+                                }}
+                                animate={{
+                                     y: [0, -15, 0],
+                                     rotateX: [0, 8, 0],
+                                     rotateY: [0, -5, 0],
+                                     scale: [1, 1.02, 1],
+                                     transition: {
+                                         duration: 2.8,
+                                         repeat: Infinity,
+                                         ease: "easeInOut"
+                                     }
+                                 }}
+                                whileHover={{
+                                    scale: 1.08,
+                                    y: -12,
+                                    rotateX: 10,
+                                    rotateY: -5,
+                                    transition: {
+                                        duration: 0.3,
+                                        ease: [0.25, 0.46, 0.45, 0.94]
+                                    }
+                                }}
+                                whileTap={{
+                                    scale: 0.95,
+                                    rotateX: -5,
+                                    transition: { duration: 0.1 }
+                                }}
+                            >
+                                <span className="group-hover:text-gray-100 transition-colors duration-300">
+                                    Designed & Developed by <span className="font-semibold">Wowwebgroup</span>
+                                </span>
+                            </motion.a>
                         </motion.nav>
                     </div>
 
