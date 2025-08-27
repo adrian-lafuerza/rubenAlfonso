@@ -5,17 +5,12 @@ import FooterSvg from '../../assets/images/footer.svg';
 import FacebookIcon from '../../assets/images/facebook-icon.svg';
 import InstagramIcon from '../../assets/images/instagram-icon.svg';
 import LinkedInIcon from '../../assets/images/linkedin-icon.svg';
-import BehanceIcon from '../../assets/images/behance-icon.svg';
-import DribbbleIcon from '../../assets/images/dribbble-icon.svg';
+import XIcon from '../../assets/images/x-icon.svg'
+import YoutubeIcon from '../../assets/images/youtube-icon.svg'
+import WhatsappIcon from '../../assets/images/whatsapp-icon.svg'
 import useScrollReveal from '../../hooks/useScrollReveal';
-import { 
-  slideInFromBottom,
-  slideInFromLeft,
-  slideInFromRight,
-  containerVariants,
-  childVariants,
-  hoverVariants,
-  fadeInVariants
+import {
+    containerVariants,
 } from '../../utils/motionVariants';
 
 const Footer = () => {
@@ -103,33 +98,45 @@ const Footer = () => {
         {
             href: "https://www.facebook.com/wwwrubenalfonsocom/?_rdr",
             icon: FacebookIcon,
-            label: "Visitar nuestra página de Facebook",
-            alt: "Facebook"
+            label: "Síguenos en Facebook - Rubén Alfonso Real Estate",
+            title: "Facebook - Propiedades en Miami y España",
+            alt: "Facebook - Rubén Alfonso Real Estate"
+        },
+        {
+            href: "https://x.com/RUBENALFONSOG",
+            icon: XIcon,
+            label: "Siguenos en X - Comprando con España",
+            title: "X - Inversiones inmobiliarias Miami-España",
+            alt: "X - Comprando con España"
         },
         {
             href: "https://www.instagram.com/comprandoconespana/",
-            icon: DribbbleIcon,
-            label: "Visitar nuestro perfil de Dribbble",
-            alt: "Dribbble"
+            icon: InstagramIcon,
+            label: "Síguenos en Instagram - Comprando con España",
+            title: "Instagram - Inversiones inmobiliarias Miami-España",
+            alt: "Instagram - Comprando con España"
         },
         {
-            href: "https://www.instagram.com/rubenalfonsorealtor",
-            icon: InstagramIcon,
-            label: "Visitar nuestro perfil de Instagram",
-            alt: "Instagram"
+            href: "https://www.youtube.com/@RUBENALFONSOREALTOR",
+            icon: YoutubeIcon,
+            label: "Ver canal en YouTube - Rubén Alfonso",
+            title: "YouTube - Inversiones inmobiliarias Miami-España",
+            alt: "YouTube - Comprando con España"
         },
         {
             href: "https://www.linkedin.com/in/ruben-alfonso-7143334/",
             icon: LinkedInIcon,
-            label: "Visitar nuestro perfil de LinkedIn",
-            alt: "LinkedIn"
+            label: "Conéctate en LinkedIn - Rubén Alfonso",
+            title: "LinkedIn - Perfil profesional inmobiliario",
+            alt: "LinkedIn - Rubén Alfonso"
         },
         {
-            href: "https://www.behance.net/rubendario",
-            icon: BehanceIcon,
-            label: "Visitar nuestro perfil de Behance",
-            alt: "Behance"
-        }
+            href: "https://wa.me/17862282670",
+            icon: WhatsappIcon,
+            label: "Conéctate en WhatsApp - Rubén Alfonso",
+            title: "WhatsApp - Inversiones inmobiliarias Miami-España",
+            alt: "WhatsApp - Comprando con España"
+        },
     ];
 
     const navigationLinks = [
@@ -142,7 +149,7 @@ const Footer = () => {
     ];
 
     console.log(navInView);
-    
+
 
     return (
         <motion.footer
@@ -154,7 +161,7 @@ const Footer = () => {
             animate={footerInView ? "visible" : "hidden"}
             variants={containerVariants}
         >
-            <motion.div 
+            <motion.div
                 className="relative z-10 w-full px-4 sm:px-6 lg:px-12 xl:px-24 py-8 lg:py-12"
                 variants={containerVariants}
             >
@@ -162,7 +169,7 @@ const Footer = () => {
                     {/* Contenido Principal del Footer */}
                     <div className="flex-shrink-0 flex flex-col justify-between h-full w-full lg:w-auto">
                         {/* Logos de la Empresa */}
-                        <motion.div 
+                        <motion.div
                             ref={logoRef}
                             className="flex flex-col sm:flex-row items-start sm:items-end gap-3 sm:gap-4 mb-6 lg:mb-8"
                             initial="hidden"
@@ -202,7 +209,7 @@ const Footer = () => {
                         </motion.div>
 
                         {/* Redes Sociales */}
-                        <motion.div 
+                        <motion.div
                             ref={socialRef}
                             className="mb-6 lg:mb-8"
                             initial="hidden"
@@ -210,7 +217,7 @@ const Footer = () => {
                             variants={containerVariants}
                         >
                             <h3 className="text-sm font-medium text-gray-600 sr-only">Síguenos en redes sociales</h3>
-                            <motion.div 
+                            <motion.div
                                 className="flex flex-wrap gap-2 sm:gap-3 md:gap-4"
                                 variants={containerVariants}
                             >
@@ -218,6 +225,7 @@ const Footer = () => {
                                     <motion.a
                                         key={social.href}
                                         href={social.href}
+                                        title={social.title}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="group bg-black text-white p-2 sm:p-3 md:p-4 rounded-xl hover:bg-white hover:text-black transition-all duration-300 transform hover:shadow-xl hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
@@ -252,7 +260,7 @@ const Footer = () => {
                         </motion.div>
 
                         {/* Enlaces de Navegación - Alineados al final */}
-                        <motion.nav 
+                        <motion.nav
                             ref={navRef}
                             className="flex flex-wrap gap-3 sm:gap-4 md:gap-6 text-xs sm:text-sm md:text-base"
                             aria-label="Enlaces de navegación del footer"
@@ -285,7 +293,7 @@ const Footer = () => {
                     </div>
 
                     {/* Imagen SVG del Footer */}
-                    <motion.div 
+                    <motion.div
                         ref={svgRef}
                         className="flex-grow relative flex justify-center lg:justify-end mt-6 lg:mt-0"
                         initial="hidden"
@@ -302,7 +310,7 @@ const Footer = () => {
                             whileHover={{
                                 scale: 1.05,
                                 y: -10,
-                                transition: { 
+                                transition: {
                                     duration: 0.4,
                                     ease: [0.25, 0.46, 0.45, 0.94]
                                 }
