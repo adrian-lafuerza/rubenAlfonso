@@ -6,9 +6,6 @@ const MAILCHIMP_ACTIONS = {
   FETCH_CAMPAIGNS_START: 'FETCH_CAMPAIGNS_START',
   FETCH_CAMPAIGNS_SUCCESS: 'FETCH_CAMPAIGNS_SUCCESS',
   FETCH_CAMPAIGNS_ERROR: 'FETCH_CAMPAIGNS_ERROR',
-  FETCH_CAMPAIGN_CONTENT_START: 'FETCH_CAMPAIGN_CONTENT_START',
-  FETCH_CAMPAIGN_CONTENT_SUCCESS: 'FETCH_CAMPAIGN_CONTENT_SUCCESS',
-  FETCH_CAMPAIGN_CONTENT_ERROR: 'FETCH_CAMPAIGN_CONTENT_ERROR',
   FETCH_CAMPAIGN_STATS_START: 'FETCH_CAMPAIGN_STATS_START',
   FETCH_CAMPAIGN_STATS_SUCCESS: 'FETCH_CAMPAIGN_STATS_SUCCESS',
   FETCH_CAMPAIGN_STATS_ERROR: 'FETCH_CAMPAIGN_STATS_ERROR',
@@ -20,21 +17,17 @@ const MAILCHIMP_ACTIONS = {
 const initialState = {
   campaigns: [],
   currentCampaign: null,
-  currentCampaignContent: null,
   currentCampaignStats: null,
   loading: {
     campaigns: false,
-    content: false,
     stats: false
   },
   error: {
     campaigns: null,
-    content: null,
     stats: null
   },
   hasLoaded: {
     campaigns: false,
-    content: false,
     stats: false
   }
 };
@@ -66,29 +59,7 @@ const mailchimpReducer = (state, action) => {
         hasLoaded: { ...state.hasLoaded, campaigns: true }
       };
     
-    case MAILCHIMP_ACTIONS.FETCH_CAMPAIGN_CONTENT_START:
-      return {
-        ...state,
-        loading: { ...state.loading, content: true },
-        error: { ...state.error, content: null }
-      };
-    
-    case MAILCHIMP_ACTIONS.FETCH_CAMPAIGN_CONTENT_SUCCESS:
-      return {
-        ...state,
-        loading: { ...state.loading, content: false },
-        currentCampaignContent: action.payload,
-        error: { ...state.error, content: null },
-        hasLoaded: { ...state.hasLoaded, content: true }
-      };
-    
-    case MAILCHIMP_ACTIONS.FETCH_CAMPAIGN_CONTENT_ERROR:
-      return {
-        ...state,
-        loading: { ...state.loading, content: false },
-        error: { ...state.error, content: action.payload },
-        hasLoaded: { ...state.hasLoaded, content: true }
-      };
+
     
     case MAILCHIMP_ACTIONS.FETCH_CAMPAIGN_STATS_START:
       return {
@@ -118,12 +89,10 @@ const mailchimpReducer = (state, action) => {
       return {
         ...state,
         currentCampaign: action.payload,
-        // Limpiar contenido y stats cuando se cambia de campaña
-        currentCampaignContent: null,
+        // Limpiar stats cuando se cambia de campaña
         currentCampaignStats: null,
         hasLoaded: { 
           ...state.hasLoaded, 
-          content: false, 
           stats: false 
         }
       };
@@ -133,7 +102,6 @@ const mailchimpReducer = (state, action) => {
         ...state,
         error: {
           campaigns: null,
-          content: null,
           stats: null
         }
       };
@@ -186,23 +154,7 @@ export const MailchimpProvider = ({ children }) => {
     }
   }, []);
 
-  // Función para obtener contenido de una campaña
-  const fetchCampaignContent = useCallback(async (campaignId) => {
-    dispatch({ type: MAILCHIMP_ACTIONS.FETCH_CAMPAIGN_CONTENT_START });
-    
-    try {
-      const content = await mailchimpService.getCampaignContent(campaignId);
-      dispatch({ 
-        type: MAILCHIMP_ACTIONS.FETCH_CAMPAIGN_CONTENT_SUCCESS, 
-        payload: content 
-      });
-    } catch (error) {
-      dispatch({ 
-        type: MAILCHIMP_ACTIONS.FETCH_CAMPAIGN_CONTENT_ERROR, 
-        payload: error.message 
-      });
-    }
-  }, []);
+
 
   // Función para obtener estadísticas de una campaña
   const fetchCampaignStats = useCallback(async (campaignId) => {
@@ -223,9 +175,9 @@ export const MailchimpProvider = ({ children }) => {
   }, []);
 
   // Función para obtener una campaña por ID
-  const getCampaignById = (campaignId) => {
+  const getCampaignById = useCallback((campaignId) => {
     return state.campaigns.find(campaign => campaign.id === campaignId);
-  };
+  }, [state.campaigns]);
 
   // Función para establecer la campaña actual
   const setCurrentCampaign = useCallback(async (campaignId) => {
@@ -250,20 +202,17 @@ export const MailchimpProvider = ({ children }) => {
           payload: campaign 
         });
         
-        console.log('Loading campaign content and stats...');
-        // Cargar automáticamente el contenido y estadísticas
-        await Promise.all([
-          fetchCampaignContent(campaignId),
-          fetchCampaignStats(campaignId)
-        ]);
-        console.log('Content and stats loaded successfully');
+        console.log('Loading campaign stats...');
+        // Cargar automáticamente las estadísticas
+        await fetchCampaignStats(campaignId);
+        console.log('Stats loaded successfully');
       } else {
         console.error('Campaña no encontrada:', campaignId);
       }
     } catch (error) {
       console.error('Error al establecer campaña actual:', error);
     }
-  }, [state.campaigns]);
+  }, [state.campaigns, getCampaignById, fetchCampaignStats]);
 
   // Función para limpiar errores
   const resetError = () => {
@@ -276,11 +225,7 @@ export const MailchimpProvider = ({ children }) => {
     fetchCampaigns();
   };
 
-  // Función para reintentar la carga de contenido
-  const retryContentFetch = (campaignId) => {
-    resetError();
-    fetchCampaignContent(campaignId);
-  };
+
 
   // Función para reintentar la carga de estadísticas
   const retryStatsFetch = (campaignId) => {
@@ -300,7 +245,6 @@ export const MailchimpProvider = ({ children }) => {
     // Estado
     campaigns: state.campaigns,
     currentCampaign: state.currentCampaign,
-    currentCampaignContent: state.currentCampaignContent,
     currentCampaignStats: state.currentCampaignStats,
     loading: state.loading,
     error: state.error,
@@ -308,12 +252,10 @@ export const MailchimpProvider = ({ children }) => {
     
     // Funciones
     fetchCampaigns,
-    fetchCampaignContent,
     fetchCampaignStats,
     setCurrentCampaign,
     resetError,
     retryCampaignsFetch,
-    retryContentFetch,
     retryStatsFetch
   };
 

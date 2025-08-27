@@ -228,12 +228,10 @@ const Destinations = () => {
                           className="cursor-pointer"
                           onClick={handlePlaySpainVideo}
                           whileHover={{
-                            scale: 1.2,
-                            rotate: [0, -5, 5, 0],
-                            y: -5
+                            y: -3
                           }}
-                          whileTap={{ scale: 0.9 }}
-                          transition={{ duration: 0.3 }}
+                          whileTap={{ y: 1 }}
+                          transition={{ duration: 0.2 }}
                         >
                           <img
                             src={YoutubeButton}
@@ -533,12 +531,10 @@ const Destinations = () => {
                           className="cursor-pointer"
                           onClick={handlePlayMiamiVideo}
                           whileHover={{
-                            scale: 1.2,
-                            rotate: [0, -5, 5, 0],
-                            y: -5
+                            y: -3
                           }}
-                          whileTap={{ scale: 0.9 }}
-                          transition={{ duration: 0.3 }}
+                          whileTap={{ y: 1 }}
+                          transition={{ duration: 0.2 }}
                         >
                           <img
                             src={YoutubeButton}

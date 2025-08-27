@@ -259,19 +259,19 @@ const Hero = () => {
                                                 className="cursor-pointer"
                                                 onClick={handlePlayVideo}
                                                 whileHover={{ 
-                                                    scale: 1.1,
-                                                    rotate: 5
+                                                    y: -2
                                                 }}
-                                                whileTap={{ scale: 0.9 }}
+                                                whileTap={{ y: 1 }}
                                                 animate={{
-                                                    y: [0, -5, 0],
+                                                    y: [0, -3, 0],
                                                 }}
                                                 transition={{
                                                     y: {
                                                         duration: 2,
                                                         repeat: Infinity,
                                                         ease: "easeInOut"
-                                                    }
+                                                    },
+                                                    hover: { duration: 0.2 }
                                                 }}
                                             >
                                                 <img

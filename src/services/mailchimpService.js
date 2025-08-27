@@ -17,7 +17,7 @@ export const mailchimpService = {
       // Parámetros por defecto
       const defaultParams = {
         status: 'sent', // Solo campañas enviadas por defecto
-        count: 21, // Obtener más campañas para el caché
+        count: 6, // Obtener más campañas para el caché
         offset: 0,
         ...params
       };
@@ -65,28 +65,7 @@ export const mailchimpService = {
     }
   },
 
-  /**
-   * Obtener el contenido completo de una campaña
-   * @param {string} campaignId - ID de la campaña
-   * @returns {Promise<Object>} Contenido HTML, texto plano e imágenes
-   */
-  async getCampaignContent(campaignId) {
-    try {
-      const response = await fetch(`${API_BASE_URL}/mailchimp/campaigns/${campaignId}/content`);
-      
-      if (!response.ok) {
-        throw new Error(`Error ${response.status}: ${response.statusText}`);
-      }
 
-      const result = await response.json();
-      
-      // El backend devuelve {success: true, data: {html: ..., plain_text: ..., images: [...]}}
-      return result;
-    } catch (error) {
-      console.error('Error fetching campaign content:', error);
-      throw error;
-    }
-  },
 
   /**
    * Obtener estadísticas de una campaña específica

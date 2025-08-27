@@ -132,7 +132,7 @@ const Properties = () => {
         {/* Header */}
         <motion.div 
           ref={headerRef}
-          className="text-center mb-18"
+          className="text-center mb-6 md:mb-18"
           initial="hidden"
           animate={headerInView ? "visible" : "hidden"}
           variants={containerVariants}
@@ -155,7 +155,7 @@ const Properties = () => {
             </motion.h2>
           </motion.div>
           <motion.p 
-            className="text-lg text-gray-600 max-w-3xl mx-auto mb-18"
+            className="text-lg text-gray-600 max-w-3xl mx-auto mb-6 md:mb-18"
             variants={childVariants}
           >
             Cada inmueble tiene su historia. Estas son algunas de las favoritas de nuestros clientes.
@@ -165,7 +165,7 @@ const Properties = () => {
         {/* Properties Carousel */}
         <motion.div 
           ref={carouselRef}
-          className="relative max-w-8xl mx-auto py-18"
+          className="relative max-w-8xl mx-auto py-2 md:py-18"
           initial="hidden"
           animate={carouselInView ? "visible" : "hidden"}
           variants={{
