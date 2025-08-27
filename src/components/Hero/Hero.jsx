@@ -34,7 +34,7 @@ const Hero = () => {
     return (
         <motion.section
             ref={heroRef}
-            className="bg-white min-h-screen flex items-center justify-center max-w-[90%] mx-auto pt-20 md:pt-24"
+            className="bg-white min-h-screen flex items-center justify-center max-w-[90%] mx-auto pt-10 md:pt-24"
             aria-label="Sección principal - Rubén Alfonso Real Estate"
             initial="hidden"
             animate={heroInView ? "visible" : "hidden"}

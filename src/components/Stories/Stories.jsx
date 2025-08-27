@@ -1,22 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { useStories } from '../../contexts/StoriesContext';
 import StoryCard from './StoryCard';
 import useScrollReveal from '../../hooks/useScrollReveal';
 import { 
-  slideInVariants, 
-  slideInFromLeft,
-  slideInFromRight,
-  slideInFromBottom,
-  scaleInVariants,
   containerVariants,
   childVariants,
-  hoverVariants,
-  fadeInVariants,
   textRevealVariants
 } from '../../utils/motionVariants';
-
-
 
 /**
  * Componente principal de Stories
@@ -631,7 +622,7 @@ const Stories = () => {
       {/* Marquee infinito - Fuera del contenedor para ocupar todo el ancho */}
       <motion.div 
         ref={marqueeRef}
-        className="w-full bg-black py-8 mt-20"
+        className="w-full bg-black py-8 mt-20 font-gothic-a1"
         initial={{ opacity: 1, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -643,16 +634,16 @@ const Stories = () => {
           transition={{ duration: 1, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           <div className="marquee__content">
-             <span className="text-white text-lg md:text-4xl font-bold mx-8 md:mx-12 whitespace-nowrap">mejores oportunidades inmobiliarias en EE.UU. y España</span>
-             <span className="text-white text-lg md:text-4xl font-bold mx-8 md:mx-12 whitespace-nowrap">★</span>
-             <span className="text-white text-lg md:text-4xl font-bold mx-8 md:mx-12 whitespace-nowrap">Tu puerta de entrada a las mejores oportunidades inmobiliarias en EE.UU. y España</span>
-             <span className="text-white text-lg md:text-4xl font-bold mx-8 md:mx-12 whitespace-nowrap">★</span>
+             <span className="text-white text-xl md:text-2xl font-bold mx-4 md:mx-4 whitespace-nowrap">Mejores oportunidades inmobiliarias en EE.UU. y España</span>
+             <span className="text-white text-xl md:text-2xl font-bold mx-4 md:mx-4 whitespace-nowrap">★</span>
+             <span className="text-white text-xl md:text-2xl font-bold mx-4 md:mx-4 whitespace-nowrap">Tu puerta de entrada a las mejores oportunidades inmobiliarias en EE.UU. y España</span>
+             <span className="text-white text-xl md:text-2xl font-bold mx-4 md:mx-4 whitespace-nowrap">★</span>
            </div>
            <div className="marquee__content" aria-hidden="true">
-             <span className="text-white text-lg md:text-4xl font-bold mx-8 md:mx-12 whitespace-nowrap">mejores oportunidades inmobiliarias en EE.UU. y España</span>
-             <span className="text-white text-lg md:text-4xl font-bold mx-8 md:mx-12 whitespace-nowrap">★</span>
-             <span className="text-white text-lg md:text-4xl font-bold mx-8 md:mx-12 whitespace-nowrap">Tu puerta de entrada a las mejores oportunidades inmobiliarias en EE.UU. y España</span>
-             <span className="text-white text-lg md:text-4xl font-bold mx-8 md:mx-12 whitespace-nowrap">★</span>
+             <span className="text-white text-xl md:text-2xl font-bold mx-4 md:mx-4 whitespace-nowrap">Mejores oportunidades inmobiliarias en EE.UU. y España</span>
+             <span className="text-white text-xl md:text-2xl font-bold mx-4 md:mx-4 whitespace-nowrap">★</span>
+             <span className="text-white text-xl md:text-2xl font-bold mx-4 md:mx-4 whitespace-nowrap">Tu puerta de entrada a las mejores oportunidades inmobiliarias en EE.UU. y España</span>
+             <span className="text-white text-xl md:text-2xl font-bold mx-4 md:mx-4 whitespace-nowrap">★</span>
            </div>
         </motion.div>
       </motion.div>
