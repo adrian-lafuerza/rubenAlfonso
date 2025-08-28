@@ -325,7 +325,7 @@ export const Navbar = () => {
                             >
                                 Miami:
                                 <motion.a
-                                    href="tel:+17862282670"
+                                    href="tel:+17862823870"
                                     className="hover:text-gray-300 transition-colors"
                                     aria-label="Llamar a oficina de Miami"
                                     title="Contacto directo Miami - Rubén Alfonso"
@@ -497,7 +497,7 @@ export const Navbar = () => {
                                     >
                                         Miami:
                                         <motion.a
-                                            href="tel:+17862282670"
+                                            href="tel:+17862823870"
                                             className="hover:text-gray-300 transition-colors duration-200"
                                             aria-label="Llamar a oficina de Miami"
                                             title="Contacto directo Miami"
@@ -505,7 +505,7 @@ export const Navbar = () => {
                                                 transition: { duration: 0.2 }
                                             }}
                                         >
-                                            +1 (786) 228-2670
+                                            +1 (786) 282-3870
                                         </motion.a>
                                     </motion.div>
                                     <motion.div
