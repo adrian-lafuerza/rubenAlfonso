@@ -250,7 +250,7 @@ const Destinations = () => {
           {/* Spain Content */}
           <motion.div
             ref={spainRef}
-            className='bg-black flex items-start justify-center lg:p-18 px-6 py-18'
+            className='bg-black flex items-center justify-center lg:p-18 px-6 py-18'
             variants={slideInFromRight}
           >
             <motion.div
@@ -314,10 +314,7 @@ const Destinations = () => {
                     className="hover:text-gray-100 transition-colors duration-200"
                     variants={benefitVariants}
                     custom={index}
-                    whileHover={{
-                      x: 10,
-                      scale: 1.02
-                    }}
+
                   >
                     {benefit}
                   </motion.p>
@@ -357,7 +354,7 @@ const Destinations = () => {
           {/* Miami Content - Aparece segundo en móvil, primero en desktop */}
           <motion.div
             ref={miamiRef}
-            className='bg-black flex items-start justify-center  lg:p-18 px-6 py-18 order-2 lg:order-1 '
+            className='bg-black flex items-center justify-center  lg:p-18 px-6 py-18 order-2 lg:order-1 '
             variants={slideInFromLeft}
           >
             <motion.div
@@ -421,10 +418,7 @@ const Destinations = () => {
                     className="hover:text-gray-100 transition-colors duration-200"
                     variants={benefitVariants}
                     custom={index}
-                    whileHover={{
-                      x: 10,
-                      scale: 1.02
-                    }}
+
                   >
                     {benefit}
                   </motion.p>

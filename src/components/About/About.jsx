@@ -118,7 +118,7 @@ const About = () => {
                   >
                     {[
                       {
-                        href: "https://www.facebook.com/wwwrubenalfonsocom/?_rdr",
+                        href: "https://www.facebook.com/rubenalfonsogroup",
                         icon: FacebookIcon,
                         label: "Síguenos en Facebook - Rubén Alfonso Real Estate",
                         title: "Facebook - Propiedades en Miami y España",
@@ -132,7 +132,7 @@ const About = () => {
                         alt: "X - Comprando con España"
                       },
                       {
-                        href: "https://www.instagram.com/comprandoconespana/",
+                        href: "https://www.instagram.com/rubenalfonsorealtor/",
                         icon: InstagramIcon,
                         label: "Síguenos en Instagram - Comprando con España",
                         title: "Instagram - Inversiones inmobiliarias Miami-España",
@@ -153,7 +153,7 @@ const About = () => {
                         alt: "LinkedIn - Rubén Alfonso"
                       },
                       {
-                        href: "https://wa.me/17862282670",
+                        href: "https://wa.me/+17862823870",
                         icon: WhatsappIcon,
                         label: "Conéctate en WhatsApp - Rubén Alfonso",
                         title: "WhatsApp - Inversiones inmobiliarias Miami-España",

@@ -21,6 +21,70 @@ const Stories = () => {
   const { ref: headerRef, isInView: headerInView } = useScrollReveal({ threshold: 0.3 });
   const { ref: carouselRef, isInView: carouselInView } = useScrollReveal({ threshold: 0.2 });
 
+
+  const instagramPosts = [
+    {
+      "id": "1TZfwZnqoGK9TyMkLZ09JV",
+      "title": "Reel 3",
+      "instagramUrl": "https://www.instagram.com/p/DNYbJuANH6-/",
+      "embedUrl": "https://www.instagram.com/p/DNYbJuANH6-/embed",
+      "likes": 0,
+      "comments": 0,
+      "createdAt": "2025-08-21T21:47:39.258Z",
+      "updatedAt": "2025-08-21T21:47:39.258Z"
+    },
+    {
+      "id": "70E8ASU3LpfqBrWXNUtr1y",
+      "title": "Reel 2",
+      "instagramUrl": "https://www.instagram.com/p/DNa9_ddOvY8/",
+      "embedUrl": "https://www.instagram.com/p/DNa9_ddOvY8/embed",
+      "likes": 0,
+      "comments": 0,
+      "createdAt": "2025-08-21T21:47:17.733Z",
+      "updatedAt": "2025-08-21T21:47:17.733Z"
+    },
+    {
+      "id": "6MkW2yuFyk7BlKlCxL3sTn",
+      "title": "Reel 1",
+      "instagramUrl": "https://www.instagram.com/p/DNjX8A-xiEW/",
+      "embedUrl": "https://www.instagram.com/p/DNjX8A-xiEW/embed",
+      "likes": 0,
+      "comments": 0,
+      "createdAt": "2025-08-21T21:46:48.261Z",
+      "updatedAt": "2025-08-21T21:46:48.261Z"
+    },
+    {
+      "id": "1TZfwZnqoGK9TyMkLZ09JV",
+      "title": "Reel 3",
+      "instagramUrl": "https://www.instagram.com/p/DNYbJuANH6-/",
+      "embedUrl": "https://www.instagram.com/p/DNYbJuANH6-/embed",
+      "likes": 0,
+      "comments": 0,
+      "createdAt": "2025-08-21T21:47:39.258Z",
+      "updatedAt": "2025-08-21T21:47:39.258Z"
+    },
+    {
+      "id": "70E8ASU3LpfqBrWXNUtr1y",
+      "title": "Reel 2",
+      "instagramUrl": "https://www.instagram.com/p/DNa9_ddOvY8/",
+      "embedUrl": "https://www.instagram.com/p/DNa9_ddOvY8/embed",
+      "likes": 0,
+      "comments": 0,
+      "createdAt": "2025-08-21T21:47:17.733Z",
+      "updatedAt": "2025-08-21T21:47:17.733Z"
+    },
+    {
+      "id": "6MkW2yuFyk7BlKlCxL3sTn",
+      "title": "Reel 1",
+      "instagramUrl": "https://www.instagram.com/p/DNjX8A-xiEW/",
+      "embedUrl": "https://www.instagram.com/p/DNjX8A-xiEW/embed",
+      "likes": 0,
+      "comments": 0,
+      "createdAt": "2025-08-21T21:46:48.261Z",
+      "updatedAt": "2025-08-21T21:46:48.261Z"
+    }
+  ]
+
   const getVisibleItems = () => {
     if (typeof window !== 'undefined') {
       if (window.innerWidth < 768) return 1;
@@ -35,7 +99,7 @@ const Stories = () => {
   const [visibleItems, setVisibleItems] = useState(getVisibleItems());
 
   const handleNavigation = useCallback((newIndex) => {
-    const maxIndex = Math.max(0, stories.length - 1);
+    const maxIndex = Math.max(0, instagramPosts.length - 1);
     const clampedIndex = Math.max(0, Math.min(maxIndex, newIndex));
     setCurrentIndex(clampedIndex);
     currentTranslateRef.current = -clampedIndex * (100 / visibleItems);
@@ -83,7 +147,7 @@ const Stories = () => {
       if (dragOffset > 0 && currentIndex > 0) {
         // Dragged right, go to previous
         handleNavigation(currentIndex - 1);
-      } else if (dragOffset < 0 && currentIndex < stories.length - 1) {
+      } else if (dragOffset < 0 && currentIndex < instagramPosts.length - 1) {
         // Dragged left, go to next
         handleNavigation(currentIndex + 1);
       } else {
@@ -163,6 +227,7 @@ const Stories = () => {
     if (!isDragging && carouselRef.current) {
       currentTranslateRef.current = -currentIndex * (100 / visibleItems);
       carouselRef.current.style.transform = `translateX(${currentTranslateRef.current}%)`;
+      console.log('currentTranslateRef.current', currentTranslateRef.current);
     }
   }, [currentIndex, visibleItems, isDragging]);
 
@@ -172,180 +237,27 @@ const Stories = () => {
     }
   };
 
-    if (loading) {
-    return (
-      <motion.section 
-        className="py-12 md:py-16 lg:py-20 xl:py-24  bg-gray-100"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            className="text-center mb-12"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.div 
-              className="h-8 bg-gray-200 rounded w-64 mx-auto mb-4"
-              variants={childVariants}
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            />
-            <motion.div 
-              className="h-4 bg-gray-200 rounded w-96 mx-auto"
-              variants={childVariants}
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }}
-            />
-          </motion.div>
-          <motion.div 
-            className="flex gap-6 overflow-hidden"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {[1, 2, 3].map((i) => (
-              <motion.div 
-                key={i} 
-                className="min-w-[320px] bg-white rounded-2xl overflow-hidden shadow-lg"
-                variants={childVariants}
-              >
-                <motion.div 
-                  className="h-72 bg-gray-200"
-                  animate={{ opacity: [0.5, 1, 0.5] }}
-                  transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
-                />
-                <div className="p-4">
-                  <motion.div 
-                    className="h-6 bg-gray-200 rounded mb-2"
-                    animate={{ opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 + 0.3 }}
-                  />
-                  <motion.div 
-                    className="h-4 bg-gray-200 rounded w-2/3"
-                    animate={{ opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 + 0.5 }}
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.section>
-    );
-  }
+  console.log('currentIndex', currentIndex);
+  console.log('visibleItems', visibleItems);
 
-  if (error) {
-    return (
-      <motion.section 
-        className="py-12 md:py-16 lg:py-20 xl:py-24 bg-gray-100"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div 
-            className="bg-white rounded-2xl p-8 shadow-lg"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <motion.div 
-              className="text-red-500 mb-4"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.4, type: "spring", stiffness: 200 }}
-            >
-              <svg className="w-16 h-16 mx-auto" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-            </motion.div>
-            <motion.h3 
-              className="text-xl font-semibold text-gray-900 mb-2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              Error al cargar las historias
-            </motion.h3>
-            <motion.p 
-              className="text-gray-600 mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.7 }}
-            >
-              {error}
-            </motion.p>
-            <motion.button
-              onClick={retryFetch}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Intentar de nuevo
-            </motion.button>
-          </motion.div>
-        </div>
-      </motion.section>
-    );
-  }
 
-  if (!stories || stories.length === 0) {
-    return (
-      <motion.section 
-        className="py-12 md:py-16 lg:py-20 xl:py-24 bg-gray-100"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div 
-            className="bg-white rounded-2xl p-8 shadow-lg"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <motion.h3 
-              className="text-xl font-semibold text-gray-900 mb-2"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              No hay historias disponibles
-            </motion.h3>
-            <motion.p 
-              className="text-gray-600"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
-              Actualmente no hay historias para mostrar.
-            </motion.p>
-          </motion.div>
-        </div>
-      </motion.section>
-    );
-  }
+  console.log(stories);
+
 
   return (
     <section className="py-12 md:py-16 lg:py-20 bg-gray-100">
-      <div className="max-w-[100%] xl:max-w-[95%] mx-auto">
+      <div className="max-w-[100%] xl:max-w-[90%] mx-auto">
         {/* Layout responsive: centrado en móvil/tablet, lado a lado en desktop */}
         <div className="lg:grid lg:grid-cols-12  lg:items-center">
           <motion.div
             ref={headerRef}
-            className="font-sofia-pro lg:col-span-4 xl:text-left text-center mt-16 lg:mt-0 lg:ml-4 ml-0"
+            className="font-sofia-pro lg:col-span-4 text-center mt-16 lg:mt-0"
             initial="visible"
             animate="visible"
             variants={containerVariants}
           >
             <motion.div
-              className="flex items-center justify-center xl:justify-start mb-4 gap-3"
+              className="flex items-center justify-center lg:justify-start mb-4 gap-3"
               variants={childVariants}
             >
               {[1, 2, 3, 4, 5].map((star) => (
@@ -377,7 +289,7 @@ const Stories = () => {
               ))}
             </motion.div>
             <motion.h2
-              className="text-3xl md:text-4xl lg:text-4xl text-gray-900 mb-4 lg:mb-6"
+              className="text-3xl md:text-4xl lg:text-5xl text-gray-900 mb-4 lg:mb-6"
               variants={textRevealVariants}
             >
               Lo Que Dicen Quienes
@@ -415,7 +327,7 @@ const Stories = () => {
                 >
                   {stories.map((item, index) => (
                     <div
-                      key={item.id}
+                      key={`story-container-${item.id}`}
                       className="w-full md:w-1/2 lg:w-1/2 xl:w-1/3 min-[1280px]:max-[1870px]:!w-1/2 flex-shrink-0 px-2 md:px-3 lg:px-4"
                     >
                       <StoryCard
@@ -429,7 +341,7 @@ const Stories = () => {
                   ))}
                 </div>
               </div>
-              {stories.length > 1 && (
+              {instagramPosts.length > 1 && (
                 <div className="flex justify-center justify-center space-x-3 md:space-x-4">
                   <button
                     onClick={() => handleNavigation(currentIndex - 1)}
@@ -463,7 +375,7 @@ const Stories = () => {
                   </button>
                   <button
                     onClick={() => handleNavigation(currentIndex + 1)}
-                    disabled={currentIndex >= stories.length - 1}
+                    disabled={currentIndex >= instagramPosts.length - 1}
                     className="cursor-pointer group hover:-translate-y-1 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none transition-all duration-300"
                   >
                     <div className="relative w-12 h-12 md:w-16 md:h-16 lg:w-16 lg:h-16">
@@ -496,6 +408,12 @@ const Stories = () => {
             </div>
           )}
         </div>
+        {loading && (
+          <div className="flex justify-center items-center py-12 md:py-16 lg:py-20">
+            <div className="animate-spin rounded-full h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 border-b-2 border-gray-900"></div>
+            <span className="ml-3 text-gray-600 text-sm md:text-base">Cargando contenido...</span>
+          </div>
+        )}
       </div>
     </section >
   );
