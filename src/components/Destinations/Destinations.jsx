@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import RubenPhoto from '../../assets/images/ruben-photo.png';
 import YoutubeButton from '../../assets/images/youtube-button.svg';
@@ -161,7 +161,7 @@ const Destinations = () => {
               transition={{ duration: 0.6 }}
             />
             {/* Video Card */}
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div onClick={handlePlaySpainVideo} className="absolute inset-0 flex items-center justify-center cursor-pointer">
               <motion.div
                 ref={spainVideoRef}
                 className="lg:w-[576px] lg:h-[650px] sm:w-50 sm:h-64 md:w-64 md:h-80"
@@ -457,7 +457,7 @@ const Destinations = () => {
               transition={{ duration: 0.6 }}
             />
             {/* Video Card */}
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div onClick={handlePlayMiamiVideo} className="absolute inset-0 flex items-center justify-center cursor-pointer">
               <motion.div
                 ref={miamiVideoRef}
                 className="lg:w-[576px] lg:h-[650px] sm:w-50 sm:h-64 md:w-64 md:h-80"

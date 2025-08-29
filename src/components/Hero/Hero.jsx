@@ -195,10 +195,10 @@ const Hero = () => {
                         </motion.div>
                     </motion.div>
 
-                    {/* Imagen y video - Columna derecha */}
+                    {/* Contenido de imagen/video - Columna derecha */}
                     <motion.div 
                         ref={imageRef}
-                        className="relative flex items-stretch h-full lg:justify-end sm:justify-center"
+                        className={`relative flex items-stretch h-full ${isVideoPlaying ? 'justify-center items-center min-[1280px]:max-[1870px]:!pt-28 lg:pt-28 xl:pt-20' : 'lg:justify-end sm:justify-center'}`}
                         initial="hidden"
                         animate={imageInView ? "visible" : "hidden"}
                         variants={slideInFromRight}
@@ -227,25 +227,26 @@ const Hero = () => {
                                 >
                                     {/* Imagen container con altura completa */}
                                     <motion.div 
-                                        className="flex-1 relative bg-gray-800 overflow-hidden rounded-t-lg"
+                                        className={`flex-1 relative bg-gray-800 overflow-hidden rounded-t-lg ${!isVideoPlaying ? 'cursor-pointer' : ''}`}
                                         style={{ minHeight: '350px' }}
                                         whileHover={{ scale: 1.02 }}
                                         animate={isVideoPlaying ? {
                                             height: '450px'
                                         } : {}}
                                         transition={{ duration: 0.6, ease: "easeInOut" }}
+                                        onClick={!isVideoPlaying ? handlePlayVideo : undefined}
                                     >
                                         {!isVideoPlaying ? (
                                             <motion.img
                                                 src={RubenPhoto}
                                                 alt="Ruben Alvarez"
-                                                className="w-full h-full object-cover"
+                                                className="w-full h-full object-cover cursor-pointer"
                                                 initial={{ scale: 1.1, opacity: 0 }}
                                                 animate={{ scale: 1, opacity: 1 }}
                                                 transition={{ duration: 0.8, ease: "easeOut" }}
                                             />
                                         ) : (
-                                            <div className="relative w-full h-full">
+                                            <div className="relative w-full h-full flex justify-center items-center">
                                                 <iframe
                                                     className="w-full h-full"
                                                     src={`${embedUrl}&autoplay=1`}
