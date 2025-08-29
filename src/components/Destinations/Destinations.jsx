@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { motion } from 'framer-motion';
 import RubenPhoto from '../../assets/images/ruben-photo.png';
 import YoutubeButton from '../../assets/images/youtube-button.svg';
 import useScrollReveal from '../../hooks/useScrollReveal';
+import { getYouTubeEmbedUrl } from '../../utils/youtubeUtils';
 import {
-  slideInVariants,
   slideInFromLeft,
   slideInFromRight,
   slideInFromBottom,
-  scaleInVariants,
   containerVariants,
   childVariants,
-  hoverVariants,
-  fadeInVariants,
-  parallaxVariants
 } from '../../utils/motionVariants';
 
 const Destinations = () => {
@@ -203,11 +199,13 @@ const Destinations = () => {
                         />
                       ) : (
                         <div className="relative w-full h-full" style={{ zIndex: 10, pointerEvents: 'auto' }}>
-                          <video
-                            className="w-full h-full object-cover"
-                            controls
-                            autoPlay
-                            onEnded={() => setIsSpainVideoPlaying(false)}
+                          <iframe
+                            className="w-full h-full"
+                            src={`${getYouTubeEmbedUrl('https://www.youtube.com/watch?v=byol5qdGb-U')}&autoplay=1`}
+                            title="Spain Real Estate Video"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
                             style={{
                               maxHeight: '100%',
                               maxWidth: '100%',
@@ -215,10 +213,7 @@ const Destinations = () => {
                               position: 'relative',
                               pointerEvents: 'auto'
                             }}
-                          >
-                            <source src="https://storage-cf-us.sharefile.com/Download/a31563f2-8d8c-d146-52db-70491999ba4a/fif6e7c0-4e57-4846-bee3-00faf67f3038.scenc?downloadId=dtbc7bbf374c88442ba8c0f248e2c431c1&accountId=a31563f2-8d8c-d146-52db-70491999ba4a&correlationId=3-kdKswzWCXEelpUqm3Wvg&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9zdG9yYWdlLWNmLXVzLnNoYXJlZmlsZS5jb20vRG93bmxvYWQvYTMxNTYzZjItOGQ4Yy1kMTQ2LTUyZGItNzA0OTE5OTliYTRhL2ZpZjZlN2MwLTRlNTctNDg0Ni1iZWUzLTAwZmFmNjdmMzAzOC5zY2VuYz9kb3dubG9hZElkPWR0YmM3YmJmMzc0Yzg4NDQyYmE4YzBmMjQ4ZTJjNDMxYzEmYWNjb3VudElkPWEzMTU2M2YyLThkOGMtZDE0Ni01MmRiLTcwNDkxOTk5YmE0YSZjb3JyZWxhdGlvbklkPTMta2RLc3d6V0NYRWVscFVxbTNXdmciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3NTYzNDMyODN9fX1dfQo_&Expires=1756343283&Signature=HiZ4CqK3tU2Le-otqwTtz9f1gyeOx8GNWK33RDLH~VP1rfyQ72aBUD3RIxoMdcqvpEwIkvrdaNFk1jnOdVSNSLzPm7coeskSvxVeE3a6g2XUvmpRWjFFHQaaqUzIZrvMTl8LpElXwnrqnNkk-fqwcP10pv4VB6Uf~9rNfMZjvPFq6WW7rjAReayNHqyS7mO2egSNQSABfymOC89exc6HQHIygWzjy4v4uWfXH3iNBq-jKb7WVOtpzwh57hFErSrSch7FiQKfHOjwvGnEo4jW6kcvuxQa6LHcCdJiOf2Jk~QCaAwIXg274jUNc4VZA32NiBK93PbeMRi6NUa8Y-4fWQ__&Key-Pair-Id=K2FX27AF7HYGU5" type="video/mp4" />
-                            Tu navegador no soporta el elemento de video.
-                          </video>
+                          />
                         </div>
                       )}
                     </div>
@@ -500,11 +495,13 @@ const Destinations = () => {
                         />
                       ) : (
                         <div className="relative w-full h-full" style={{ zIndex: 10, pointerEvents: 'auto' }}>
-                          <video
-                            className="w-full h-full object-cover"
-                            controls
-                            autoPlay
-                            onEnded={() => setIsMiamiVideoPlaying(false)}
+                          <iframe
+                            className="w-full h-full"
+                            src={`${getYouTubeEmbedUrl('https://www.youtube.com/watch?v=alFr5EO3Ozw')}&autoplay=1`}
+                            title="Miami Real Estate Video"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
                             style={{
                               maxHeight: '100%',
                               maxWidth: '100%',
@@ -512,10 +509,7 @@ const Destinations = () => {
                               position: 'relative',
                               pointerEvents: 'auto'
                             }}
-                          >
-                            <source src="https://storage-cf-us.sharefile.com/Download/a31563f2-8d8c-d146-52db-70491999ba4a/fi05a306-2e76-41e3-818d-70ac1bfa9fa5.scenc?downloadId=dt243bf33dce274e4182767077241684c4&accountId=a31563f2-8d8c-d146-52db-70491999ba4a&correlationId=NCvDUAfa66hwT469IsyL2Q&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9zdG9yYWdlLWNmLXVzLnNoYXJlZmlsZS5jb20vRG93bmxvYWQvYTMxNTYzZjItOGQ4Yy1kMTQ2LTUyZGItNzA0OTE5OTliYTRhL2ZpMDVhMzA2LTJlNzYtNDFlMy04MThkLTcwYWMxYmZhOWZhNS5zY2VuYz9kb3dubG9hZElkPWR0MjQzYmYzM2RjZTI3NGU0MTgyNzY3MDc3MjQxNjg0YzQmYWNjb3VudElkPWEzMTU2M2YyLThkOGMtZDE0Ni01MmRiLTcwNDkxOTk5YmE0YSZjb3JyZWxhdGlvbklkPU5DdkRVQWZhNjZod1Q0NjlJc3lMMlEiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3NTYzNDgwNDd9fX1dfQo_&Expires=1756348047&Signature=TtD6cik-wiRXSZbz1OVE68o17ieSMyjLZ4n3K1rSxEGn5Qe9maFUg-CuCsdE2BZ8ZsqjJzc7xqpVTStkkkW6P5cxjCYVEjcN8qkOOaVL~GvC8lwZKwrkPCfkqUi3b-NDMptPVgF-iv3gBiiqiLUs9CGK2obz6GctIt9c7yQFPpaxmGz~6xePmxuzdXdEKj41Ct1dYPSYiLgOIgP9TkPcx~x7ZezNWRViQLotdskC42eobSb69UP~HFImXmAeQJIrJFeesTsKyiHZWL7F0kUsdud22CgjROHRh3td7QPwd7vGJkuJYr2HTdbzYsc9Df5~3bqczMutkNeigxWg0kHTIg__&Key-Pair-Id=K2FX27AF7HYGU5" type="video/mp4" />
-                            Tu navegador no soporta el elemento de video.
-                          </video>
+                          />
                         </div>
                       )}
                     </div>

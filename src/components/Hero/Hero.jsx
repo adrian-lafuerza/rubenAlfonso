@@ -4,6 +4,7 @@ import RubenPhoto from '../../assets/images/ruben-photo.png';
 import YoutubeButton from '../../assets/images/youtube-button.svg';
 import useScrollReveal from '../../hooks/useScrollReveal';
 import useAnimatedCounter from '../../hooks/useAnimatedCounter';
+import { getYouTubeEmbedUrl } from '../../utils/youtubeUtils';
 import { 
   slideInVariants, 
   slideInFromRight, 
@@ -21,6 +22,10 @@ const Hero = () => {
     const { ref: heroRef, isInView: heroInView } = useScrollReveal({ threshold: 0.2 });
     const { ref: statsRef, isInView: statsInView } = useScrollReveal({ threshold: 0.3 });
     const { ref: imageRef, isInView: imageInView } = useScrollReveal({ threshold: 0.2 });
+
+    // URL del video de YouTube para el Hero
+    const youtubeUrl = 'https://www.youtube.com/watch?v=tnyE-qGu_cA';
+    const embedUrl = getYouTubeEmbedUrl(youtubeUrl);
 
     // Animated counters
     const yearsCounter = useAnimatedCounter(20, 2000, statsInView);
@@ -199,24 +204,36 @@ const Hero = () => {
                         variants={slideInFromRight}
                     >
                         <motion.div 
-                            className="max-w-1xl flex flex-col h-full"
+                            className={`${isVideoPlaying ? 'w-full max-w-4xl' : 'max-w-1xl'} flex flex-col h-full`}
                             whileHover={{ y: -10 }}
-                            transition={{ duration: 0.3 }}
+                            animate={isVideoPlaying ? {
+                                width: '100%',
+                                maxWidth: '56rem'
+                            } : {}}
+                            transition={{ duration: 0.6, ease: "easeInOut" }}
                         >
                             <div className="relative flex-1">
                                 {/* Marco negro grueso */}
                                 <motion.div 
                                     className="bg-black p-3 md:p-4 rounded-lg h-full flex flex-col"
+                                    style={{ minHeight: '400px' }}
                                     whileHover={{ 
                                         boxShadow: "0 20px 40px rgba(0,0,0,0.3)"
                                     }}
-                                    transition={{ duration: 0.3 }}
+                                    animate={isVideoPlaying ? {
+                                        height: '500px'
+                                    } : {}}
+                                    transition={{ duration: 0.6, ease: "easeInOut" }}
                                 >
                                     {/* Imagen container con altura completa */}
                                     <motion.div 
                                         className="flex-1 relative bg-gray-800 overflow-hidden rounded-t-lg"
+                                        style={{ minHeight: '350px' }}
                                         whileHover={{ scale: 1.02 }}
-                                        transition={{ duration: 0.3 }}
+                                        animate={isVideoPlaying ? {
+                                            height: '450px'
+                                        } : {}}
+                                        transition={{ duration: 0.6, ease: "easeInOut" }}
                                     >
                                         {!isVideoPlaying ? (
                                             <motion.img
@@ -229,16 +246,15 @@ const Hero = () => {
                                             />
                                         ) : (
                                             <div className="relative w-full h-full">
-                                                <video
-                                                    className="w-full h-full object-cover"
-                                                    controls
-                                                    autoPlay
-                                                    onEnded={() => setIsVideoPlaying(false)}
+                                                <iframe
+                                                    className="w-full h-full"
+                                                    src={`${embedUrl}&autoplay=1`}
+                                                    title="Rubén Alfonso - Dos destinos, una visión inmobiliaria global: Miami & España"
+                                                    frameBorder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                    allowFullScreen
                                                     style={{ maxHeight: '100%', maxWidth: '100%' }}
-                                                >
-                                                    <source src="https://storage-cf-us.sharefile.com/Download/a31563f2-8d8c-d146-52db-70491999ba4a/fibae9e9-f661-403b-be3b-15b39005e911.scenc?downloadId=dtf9f3bb7b41d34bbf8753ed211f67df01&accountId=a31563f2-8d8c-d146-52db-70491999ba4a&correlationId=bZv3DAW3zDhBbQbhADmzBA&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9zdG9yYWdlLWNmLXVzLnNoYXJlZmlsZS5jb20vRG93bmxvYWQvYTMxNTYzZjItOGQ4Yy1kMTQ2LTUyZGItNzA0OTE5OTliYTRhL2ZpYmFlOWU5LWY2NjEtNDAzYi1iZTNiLTE1YjM5MDA1ZTkxMS5zY2VuYz9kb3dubG9hZElkPWR0ZjlmM2JiN2I0MWQzNGJiZjg3NTNlZDIxMWY2N2RmMDEmYWNjb3VudElkPWEzMTU2M2YyLThkOGMtZDE0Ni01MmRiLTcwNDkxOTk5YmE0YSZjb3JyZWxhdGlvbklkPWJadjNEQVczekRoQmJRYmhBRG16QkEiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3NTYzNTEyNjl9fX1dfQo_&Expires=1756351269&Signature=DEd7ZQkc9E7ZUfy1kQ7wyfhDNgZKYgsf2aMtrUXSc1v9TihaYnpC9a4R2t1YmTjWoFboLlJL9SPI--4pBT77FujtirmkBU8cStjhuUN2l76xcFiCK9Vh82ZQ11hzugXpm3V-oYHhQULlcPDTv70gshcoQGDpKEEB3rXdY8wGXFVO4KdN6pQ9ZOCtpYnTCdU31gxImqZsKbj-NVry9nJYBn2lwVQ~2cytOwLs3sXaDbJaC1szn6B2xbH9WqStQrO47U3Mcm0l7Skxn9iJBQFNgRHwn8QXKBKXrCDAaQN0XSyufPeInO8Tgwi8EK13sPOOuufRCRK0w15JbSTa0O1TUA__&Key-Pair-Id=K2FX27AF7HYGU5" type="video/mp4" />
-                                                    Tu navegador no soporta el elemento de video.
-                                                </video>
+                                                />
                                             </div>
                                         )}
                                     </motion.div>
