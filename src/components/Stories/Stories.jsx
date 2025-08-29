@@ -237,13 +237,6 @@ const Stories = () => {
     }
   };
 
-  console.log('currentIndex', currentIndex);
-  console.log('visibleItems', visibleItems);
-
-
-  console.log(stories);
-
-
   return (
     <section className="py-12 md:py-16 lg:py-20 bg-gray-100">
       <div className="max-w-[100%] xl:max-w-[90%] mx-auto">
@@ -251,13 +244,13 @@ const Stories = () => {
         <div className="lg:grid lg:grid-cols-12  lg:items-center">
           <motion.div
             ref={headerRef}
-            className="font-sofia-pro lg:col-span-4 text-center mt-16 lg:mt-0"
+            className="font-sofia-pro lg:col-span-4 xl:text-left text-center mt-16 lg:mt-0"
             initial="visible"
             animate="visible"
             variants={containerVariants}
           >
             <motion.div
-              className="flex items-center justify-center lg:justify-start mb-4 gap-3"
+              className="flex items-center justify-center xl:justify-start mb-4 gap-3"
               variants={childVariants}
             >
               {[1, 2, 3, 4, 5].map((star) => (

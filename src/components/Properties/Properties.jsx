@@ -197,11 +197,6 @@ const Properties = () => {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  whileHover={{
-                    scale: 1.05,
-                    rotateY: 5,
-                    transition: { duration: 0.3 }
-                  }}
                 />
               </AnimatePresence>
             </motion.div>
@@ -213,11 +208,6 @@ const Properties = () => {
             <motion.div 
               className="relative"
               variants={sideImageVariants}
-              whileHover={{
-                scale: 1.05,
-                opacity: 0.8,
-                transition: { duration: 0.3 }
-              }}
             >
               <motion.img
                 src={properties[(currentSlide - 1 + properties.length) % properties.length].image}
@@ -267,12 +257,7 @@ const Properties = () => {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  whileHover={{
-                    scale: 1.15,
-                    rotateY: 5,
-                    boxShadow: "0 25px 50px rgba(0,0,0,0.3)",
-                    transition: { duration: 0.3 }
-                  }}
+
                   layoutId={`property-${currentSlide}`}
                 />
               </AnimatePresence>
@@ -282,11 +267,6 @@ const Properties = () => {
             <motion.div 
               className="relative"
               variants={sideImageVariants}
-              whileHover={{
-                scale: 1.05,
-                opacity: 0.8,
-                transition: { duration: 0.3 }
-              }}
             >
               <motion.img
                 src={properties[(currentSlide + 1) % properties.length].image}
@@ -337,10 +317,7 @@ const Properties = () => {
                   }
                 }
               }}
-              whileHover={{
-                scale: 1.3,
-                transition: { duration: 0.2 }
-              }}
+
               whileTap={{
                 scale: 0.9,
                 transition: { duration: 0.1 }
