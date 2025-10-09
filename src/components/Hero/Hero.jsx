@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import RubenPhoto from '../../assets/images/ruben-photo.png';
+import RubenPhoto from '../../assets/images/RUBEN_PIC_3.png';
 import YoutubeButton from '../../assets/images/youtube-button.svg';
 import useScrollReveal from '../../hooks/useScrollReveal';
 import useAnimatedCounter from '../../hooks/useAnimatedCounter';
@@ -8,11 +8,8 @@ import { getYouTubeEmbedUrl } from '../../utils/youtubeUtils';
 import { 
   slideInVariants, 
   slideInFromRight, 
-  slideInFromBottom,
-  scaleInVariants,
   containerVariants,
   childVariants,
-  hoverVariants,
   counterVariants,
   textRevealVariants
 } from '../../utils/motionVariants';
@@ -93,9 +90,7 @@ const Hero = () => {
                             variants={slideInVariants}
                             custom={3}
                         >
-                            Asesoro personalmente a compradores e inversores de Latinoamérica y
-                            España que quieren proteger su patrimonio comprando en el sur de la
-                            Florida o en España.
+                            Ayudo a Familias e Inversionistas a Diversificar, Proteger, Salvaguarda, Obtener Rentabilidad y Plusvalía a través del Mercado Inmobiliario de MIAMI, ORLANDO y ESPAÑA
                         </motion.p>
 
                         {/* Botones de acción */}

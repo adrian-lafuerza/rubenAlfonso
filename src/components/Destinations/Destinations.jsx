@@ -266,61 +266,103 @@ const Destinations = () => {
                 className="text-xl mb-4 font-semibold"
                 variants={textItemVariants}
               >
-                🏡 ¿Por qué comprar en España?
+                🏡 ¿Por qué invertir en España?
               </motion.h4>
               <motion.p
                 className="text-lg mb-4 font-bold"
                 variants={textItemVariants}
               >
-                Estilo de vida, inversión segura y oportunidades únicas en el corazón de Europa.
+                Estilo de vida, seguridad y oportunidades únicas en el corazón de Europa.
               </motion.p>
               <motion.p
                 className="text-lg mb-4"
                 variants={textItemVariants}
               >
-                Comprar una propiedad en España no es solo adquirir una vivienda: es invertir en calidad de vida. España ofrece un equilibrio inigualable entre clima, gastronomía, cultura y seguridad, lo que la convierte en uno de los destinos más atractivos para compradores e inversores de todo...
+                Adquirir una propiedad en España no significa solo comprar una vivienda: <span className="font-bold">es asegurar un estilo de vida y una inversión sólida a largo plazo.</span>
               </motion.p>
               <motion.p
                 className="text-lg mb-4"
                 variants={textItemVariants}
               >
-                Además, el mercado inmobiliario español sigue ofreciendo oportunidades con alta proyección de revalorización, especialmente en zonas como Madrid, la Costa Blanca o la Costa del Sol, donde la demanda tanto nacional como extranjera se mantiene sólida.
+                El país combina de manera excepcional clima mediterráneo, gastronomía de talla mundial, cultura vibrante y estabilidad jurídica, posicionándose como uno de los destinos más atractivos para compradores e inversores internacionales.
               </motion.p>
-              <motion.h4
-                className="text-xl mb-4 font-semibold"
+              <motion.p
+                className="text-lg mb-4"
                 variants={textItemVariants}
               >
-                Ventajas de comprar en España:
-              </motion.h4>
-              <motion.div
-                className='space-y-2 text-sm md:text-base ml-2 mb-4'
-                variants={containerVariants}
-              >
-                {[
-                  "• 🏖️ Clima mediterráneo con más de 300 días de sol al año.",
-                  "• 🏙️ Madrid: epicentro económico y cultural, ideal para inversión urbana.",
-                  "• 🏡 Costa del Sol y Costa Blanca: destinos vacacionales con alta rentabilidad en alquiler turístico.",
-                  "• 📈 Mercado estable y seguro, con oportunidades desde retornos del 7%.",
-                  "• 🛂 Posibilidad de acceder a la Golden Visa por inversión.",
-                  "• 🇪🇸 Beneficios fiscales y derechos garantizados como comprador extranjero."
-                ].map((benefit, index) => (
-                  <motion.p
-                    key={index}
-                    className="hover:text-gray-100 transition-colors duration-200"
-                    variants={benefitVariants}
-                    custom={index}
-
-                  >
-                    {benefit}
-                  </motion.p>
-                ))}
+                Hoy, el mercado inmobiliario español sigue ofreciendo proyectos con gran potencial de revalorización, especialmente en zonas estratégicas como <span className="font-bold">Madrid, la Costa Blanca y la Costa del Sol</span>, donde la demanda nacional y extranjera se mantiene firme.
+              </motion.p>
+              
+              <motion.div className="mb-6" variants={textItemVariants}>
+                <motion.h4
+                  className="text-xl mb-4 font-semibold flex items-center"
+                  variants={textItemVariants}
+                >
+                  ✅ Ventajas de invertir en España
+                </motion.h4>
+                <motion.div
+                  className='space-y-2 text-sm md:text-base ml-2 mb-4'
+                  variants={containerVariants}
+                >
+                  {[
+                    { emoji: "☀️", title: "Clima envidiable:", text: "más de 300 días de sol al año." },
+                    { emoji: "🏙️", title: "Madrid:", text: "capital económica y cultural, epicentro de la inversión urbana." },
+                    { emoji: "🏖️", title: "Costa del Sol & Costa Blanca:", text: "destinos turísticos de alta rentabilidad y ocupación." },
+                    { emoji: "📈", title: "Mercado estable y en crecimiento,", text: "con retornos desde el 7%." },
+                    { emoji: "🛂", title: "Residencia no Lucrativa:", text: "acceso a residencia europea." },
+                    { emoji: "⚖️", title: "Derechos garantizados y beneficios fiscales", text: "para compradores extranjeros." }
+                  ].map((benefit, index) => (
+                    <motion.p
+                      key={index}
+                      className="hover:text-gray-100 transition-colors duration-200"
+                      variants={benefitVariants}
+                      custom={index}
+                    >
+                      {benefit.emoji} <span className="font-bold">{benefit.title}</span> {benefit.text}
+                    </motion.p>
+                  ))}
+                </motion.div>
               </motion.div>
-              <motion.p
-                className="text-lg mb-8"
-                variants={textItemVariants}
-              >
-                Como abogado y asesor especializado, Rubén Alfonso te acompaña durante todo el proceso: desde la elección de la zona hasta la firma de escritura, con total transparencia, respaldo legal y orientación financiera.
-              </motion.p>
+
+              <motion.div className="mb-8" variants={textItemVariants}>
+                <motion.h4
+                  className="text-xl mb-4 font-semibold flex items-center"
+                  variants={textItemVariants}
+                >
+                  🤝 Acompañamiento experto
+                </motion.h4>
+                <motion.p
+                  className="text-lg mb-2"
+                  variants={textItemVariants}
+                >
+                  Como <span className="font-bold">abogado y asesor especializado</span>, Rubén Alfonso te guía en cada etapa:
+                </motion.p>
+                <motion.div
+                  className='space-y-2 text-sm md:text-base ml-2'
+                  variants={containerVariants}
+                >
+                  {[
+                    { bullet: "•", title: "Selección de la zona", text: "y la propiedad adecuada." },
+                    { bullet: "•", title: "Asesoría legal y financiera", text: "con total transparencia." },
+                    { bullet: "•", title: "Gestión integral", text: "hasta la firma de la escritura." }
+                  ].map((service, index) => (
+                    <motion.p
+                      key={index}
+                      className="hover:text-gray-100 transition-colors duration-200"
+                      variants={benefitVariants}
+                      custom={index}
+                    >
+                      {service.bullet} <span className="font-bold">{service.title}</span> {service.text}
+                    </motion.p>
+                  ))}
+                </motion.div>
+                <motion.p
+                  className="text-lg mt-4 font-semibold"
+                  variants={textItemVariants}
+                >
+                  Invertir en España es abrir la puerta a nuevas oportunidades.
+                </motion.p>
+              </motion.div>
               <motion.button
                 className="cursor-pointer font-semibold text-white border-2 border-white mt-8 px-8 py-3 rounded-md font-medium hover:bg-white hover:text-[#0E0E0E] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                 aria-label="Información sobre comprar en Spain"

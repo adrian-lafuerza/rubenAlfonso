@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import RubenPhoto2 from '../../assets/images/ruben-photo-2.png';
+import RubenPhoto2 from '../../assets/images/RUBEN_PIC_3.png';
 import FacebookIcon from '../../assets/images/facebook-icon.svg';
 import InstagramIcon from '../../assets/images/instagram-icon.svg';
 import LinkedInIcon from '../../assets/images/linkedin-icon.svg';
