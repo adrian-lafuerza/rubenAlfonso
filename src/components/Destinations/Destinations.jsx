@@ -201,7 +201,7 @@ const Destinations = () => {
                         <div className="relative w-full h-full" style={{ zIndex: 10, pointerEvents: 'auto' }}>
                           <iframe
                             className="w-full h-full"
-                            src={`${getYouTubeEmbedUrl('https://www.youtube.com/watch?v=byol5qdGb-U')}&autoplay=1`}
+                            src={`${getYouTubeEmbedUrl('https://www.youtube.com/watch?v=lOPfMGRSwyQ&feature=youtu.be')}&autoplay=1`}
                             title="Spain Real Estate Video"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -539,7 +539,7 @@ const Destinations = () => {
                         <div className="relative w-full h-full" style={{ zIndex: 10, pointerEvents: 'auto' }}>
                           <iframe
                             className="w-full h-full"
-                            src={`${getYouTubeEmbedUrl('https://www.youtube.com/watch?v=alFr5EO3Ozw')}&autoplay=1`}
+                            src={`${getYouTubeEmbedUrl('https://www.youtube.com/watch?v=ablnBDxyYd0&feature=youtu.be')}&autoplay=1`}
                             title="Miami Real Estate Video"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
