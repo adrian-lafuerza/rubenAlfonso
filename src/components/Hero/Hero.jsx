@@ -21,7 +21,7 @@ const Hero = () => {
     const { ref: imageRef, isInView: imageInView } = useScrollReveal({ threshold: 0.2 });
 
     // URL del video de YouTube para el Hero
-    const youtubeUrl = 'https://www.youtube.com/watch?v=tnyE-qGu_cA';
+    const youtubeUrl = 'https://www.youtube.com/watch?v=Caxz8W1u-24';
     const embedUrl = getYouTubeEmbedUrl(youtubeUrl);
 
     // Animated counters
