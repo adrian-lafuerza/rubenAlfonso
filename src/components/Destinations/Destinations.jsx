@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import RubenPhoto from '../../assets/images/ruben-photo.png';
+import RubenPhoto from '../../assets/images/RUBEN_PIC_3.png';
 import YoutubeButton from '../../assets/images/youtube-button.svg';
 import useScrollReveal from '../../hooks/useScrollReveal';
 import { getYouTubeEmbedUrl } from '../../utils/youtubeUtils';
