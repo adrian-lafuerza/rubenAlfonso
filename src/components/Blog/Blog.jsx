@@ -149,7 +149,7 @@ const Blog = () => {
         <button
           className="cursor-pointer my-16 font-semibold text-[#0E0E0E] border-2 border-[#0E0E0E] px-8 py-3 rounded-md font-medium hover:bg-[#0E0E0E] hover:text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
           aria-label="Ver todas las campañas del blog"
-          onClick={() => window.location.href = `https://comprando-con-esp-ohta.vercel.app/project/blog`}
+          onClick={() => window.location.href = `https://www.compracondoespana.com/project/blog`}
         >
           Ver Todas
         </button>

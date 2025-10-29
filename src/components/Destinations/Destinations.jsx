@@ -372,7 +372,7 @@ const Destinations = () => {
                   boxShadow: "0 10px 25px rgba(255,255,255,0.2)",
                   y: -2
                 }}
-                onClick={() => window.location.href = `https://comprando-con-esp-ohta.vercel.app/project`}
+                onClick={() => window.location.href = `https://www.compracondoespana.com/project`}
                 whileTap={{ scale: 0.95 }}
               >
                 Ver Proyectos
