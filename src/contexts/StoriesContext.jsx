@@ -94,11 +94,23 @@ export const StoriesProvider = ({ children }) => {
     
     try {
       const stories = await getStories();
+      console.log('StoriesContext - Datos recibidos del servicio:', stories);
+      console.log('StoriesContext - Número de stories:', stories.length);
+      stories.forEach((story, index) => {
+        console.log(`Story ${index}:`, {
+          id: story.id,
+          name: story.name,
+          video: story.video,
+          backgroundImage: story.backgroundImage,
+          videoLink: story.videoLink
+        });
+      });
       dispatch({ 
         type: STORIES_ACTIONS.FETCH_SUCCESS, 
         payload: stories 
       });
     } catch (error) {
+      console.error('StoriesContext - Error al obtener stories:', error);
       dispatch({ 
         type: STORIES_ACTIONS.FETCH_ERROR, 
         payload: error.message 

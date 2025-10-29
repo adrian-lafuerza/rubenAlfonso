@@ -11,36 +11,46 @@ const fallbackStories = [
     id: 'story-1',
     name: 'María González',
     positionJob: 'Compradora de Primera Vivienda',
-    backgroundImage: '/assets/images/story-1.jpg',
-    videoLink: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+    backgroundImage: '',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+    videoDetails: null,
+    videoLink: ''
   },
   {
     id: 'story-2',
     name: 'Carlos Rodríguez',
     positionJob: 'Inversionista Inmobiliario',
     backgroundImage: '/assets/images/story-2.jpg',
+    video: '',
+    videoDetails: null,
     videoLink: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
   },
   {
     id: 'story-3',
     name: 'Ana Martínez',
     positionJob: 'Vendedora de Propiedad',
-    backgroundImage: '/assets/images/story-3.jpg',
-    videoLink: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+    backgroundImage: '',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+    videoDetails: null,
+    videoLink: ''
   },
   {
     id: 'story-4',
     name: 'Roberto Silva',
     positionJob: 'Comprador Internacional',
     backgroundImage: '/assets/images/story-4.jpg',
+    video: '',
+    videoDetails: null,
     videoLink: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
   },
   {
     id: 'story-5',
     name: 'Laura Fernández',
     positionJob: 'Relocación Familiar',
-    backgroundImage: '/assets/images/story-5.jpg',
-    videoLink: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+    backgroundImage: '',
+    video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    videoDetails: null,
+    videoLink: ''
   }
 ];
 
@@ -58,6 +68,9 @@ export const getStories = async () => {
       },
     });
 
+    console.log(response);
+    
+
     if (!response.ok) {
       throw new Error(`Error ${response.status}: ${response.statusText}`);
     }
@@ -72,15 +85,14 @@ export const getStories = async () => {
 
     // Validar que cada story tenga los campos requeridos
     const validatedStories = data.stories.map((story, index) => {
-      if (!story.name || !story.backgroundImage || !story.videoLink) {
-        console.warn(`Story en índice ${index} no tiene todos los campos requeridos:`, story);
-      }
 
       return {
         id: story.id || `story-${index}`,
         name: story.name || 'Sin nombre',
         positionJob: story.positionJob || '',
         backgroundImage: story.backgroundImage || '',
+        video: story.video || '',
+        videoDetails: story.videoDetails || null,
         videoLink: story.videoLink || ''
       };
     });
